@@ -1,4 +1,5 @@
-import { AccessTime, Place } from "@mui/icons-material";
+// So these two components are actually nice tiny icons !
+import { AccessTime, Place, SsidChart, PieChartOutline } from "@mui/icons-material";
 import { Avatar, Box, Button, Card, CardContent, CardHeader, Chip, Divider, Typography } from "@mui/material"
 import { Link } from "react-router";
 import { formatDate } from "../../../lib/util/util";
@@ -39,6 +40,7 @@ export default function ActivityCard({ activity }: Props) {
       <Divider sx={{ mb: 3 }} />
 
       <CardContent sx={{ p: 0 }}>
+
         <Box display='flex' alignItems='center' mb={2} px={2}>
           <Box display='flex' flexGrow={0} alignItems='center'>
             <AccessTime sx={{ mr: 1 }} />
@@ -49,12 +51,21 @@ export default function ActivityCard({ activity }: Props) {
 
           <Place sx={{ ml: 3, mr: 1 }} />
           <Typography variant="body2">{activity.venue}</Typography>
+
+          <SsidChart sx={{ ml: 3, mr: 1 }} />
+
+          <PieChartOutline sx={{ ml: 3, mr: 1 }} />
+
         </Box>
+
         <Divider />
+
         <Box display='flex' gap={2} sx={{ backgroundColor: 'grey.200', py: 3, pl: 3 }}>
-          Attendees go here
+          Attendees go here ?
         </Box>
+
       </CardContent>
+
       <CardContent sx={{ pb: 2 }}>
         <Typography variant="body2">
           {activity.description}
