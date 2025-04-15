@@ -2,6 +2,8 @@
 import { AccessTime, Place, SsidChart, PieChartOutline } from "@mui/icons-material";
 import { Avatar, Box, Button, Card, CardContent, CardHeader, Chip, Divider, Typography } from "@mui/material"
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from 'recharts';
+
 import { Link } from "react-router";
 import { formatDate } from "../../../lib/util/util";
 
@@ -14,6 +16,15 @@ const data = [
 ];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+// Sample data for the stacked trend graph
+const trendData = [
+  { name: 'Jan', GroupA: 400, GroupB: 240 },
+  { name: 'Feb', GroupA: 300, GroupB: 139 },
+  { name: 'Mar', GroupA: 200, GroupB: 980 },
+  { name: 'Apr', GroupA: 278, GroupB: 390 },
+  { name: 'May', GroupA: 189, GroupB: 480 },
+];
 
 type Props = {
   activity: Activity
@@ -90,6 +101,21 @@ export default function ActivityCard({ activity }: Props) {
               </Pie>
               <Tooltip />
             </PieChart>
+          </ResponsiveContainer>
+        </Box>
+
+        <Divider />
+
+        <Box display='flex' gap={2} sx={{ backgroundColor: 'grey.200', py: 3, pl: 3 }}>
+          <ResponsiveContainer width="100%" height={200}>
+            <AreaChart data={trendData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Area type="monotone" dataKey="GroupA" stackId="1" stroke="#8884d8" fill="#8884d8" />
+              <Area type="monotone" dataKey="GroupB" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
+            </AreaChart>
           </ResponsiveContainer>
         </Box>
 
